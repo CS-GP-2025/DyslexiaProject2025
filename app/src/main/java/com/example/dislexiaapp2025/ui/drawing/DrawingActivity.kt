@@ -10,8 +10,8 @@ import com.example.dislexiaapp2025.R
 import com.example.dislexiaapp2025.databinding.ActivityDrawingBinding
 
 class DrawingActivity : AppCompatActivity() {
-    lateinit var binding: ActivityDrawingBinding
-    lateinit var fragment: DrawingFragment
+    private lateinit var binding: ActivityDrawingBinding
+    private lateinit var fragment: DrawingFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
