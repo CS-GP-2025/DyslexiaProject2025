@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/activity_bg"
+    android:layoutDirection="ltr"
     tools:context=".ui.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +49,8 @@
                 android:text="Hello"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/userNameTV"
@@ -57,7 +59,8 @@
                 android:layout_marginStart="5dp"
                 android:text="User Name"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -68,7 +71,8 @@
             android:src="@drawable/setting_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -99,7 +103,8 @@
                     android:layout_width="match_parent"
                     android:layout_weight="2"
                     android:src="@drawable/letters_sec_bg"
-                    android:layout_height="0dp"/>
+                    android:layout_height="0dp"
+                    tools:ignore="ContentDescription" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_weight="1"
@@ -108,7 +113,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -125,11 +131,13 @@
                 android:layout_width="150dp"
                 android:orientation="vertical"
                 android:layout_height="200dp">
+
                 <ImageView
                     android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="2"
                     android:src="@drawable/numbers_sec_bg"
-                    android:layout_height="0dp"/>
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_weight="1"
@@ -138,7 +146,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -153,11 +162,13 @@
                 android:layout_width="150dp"
                 android:orientation="vertical"
                 android:layout_height="200dp">
+
                 <ImageView
                     android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="2"
                     android:src="@drawable/reading_sec_bg"
-                    android:layout_height="0dp"/>
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_weight="1"
@@ -166,7 +177,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
 
@@ -181,11 +193,13 @@
                 android:layout_width="150dp"
                 android:orientation="vertical"
                 android:layout_height="200dp">
+
                 <ImageView
                     android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="2"
                     android:src="@drawable/math_sec_bg"
-                    android:layout_height="0dp"/>
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_weight="1"
@@ -194,7 +208,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
 
@@ -225,6 +240,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent">
+            <ImageView
+                android:id="@+id/hideView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="TODO"
+                android:src="@drawable/back_arrow"
+                android:padding="10dp"
+                tools:ignore="ContentDescription,HardcodedText" />
 
             <ImageView
                 android:id="@+id/beginnerIV"

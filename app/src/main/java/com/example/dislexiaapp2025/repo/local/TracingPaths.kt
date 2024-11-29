@@ -47,6 +47,7 @@ object TracingPaths {
             7 -> getSeven()
             8 -> getEight()
             9 -> getNine()
+            10 -> getTen()
             else -> arrayListOf()}
         return paths
         }
@@ -290,6 +291,15 @@ object TracingPaths {
         addPath(setPathByCubic(Path(), 300f, 100f,0f,50f,100f,400f, 350f, 300f))
         return paths
     }
+    private fun getTen():ArrayList<Path>{
+        paths = arrayListOf()
+        addPath(setPath(Path(), 150f, 100f, 150f, 700f))
+        addPath(setPath(Path(), 150f, 100f, 50f, 150f))
+        addPath(setArchPath(Path(),250f,250f,500f,650f,0f,-351f))
+
+        return paths
+    }
+
 
 
 

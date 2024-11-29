@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         binding.numbers.setOnClickListener {
             numbersOrLetters(result = "numbers")
         }
+        binding.hideView.setOnClickListener{
+            binding.beginnerOrProf.visibility= GONE
+        }
         setContentView(binding.root)
 
     }

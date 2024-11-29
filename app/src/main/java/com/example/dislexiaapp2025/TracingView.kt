@@ -13,7 +13,7 @@ import kotlin.math.sqrt
 class TracingView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : View(context, attrs) {
-
+    private var specialCases=ArrayList<String>()
     private lateinit var currentPath :Path
     private var drawing=false
     private var counter=0
@@ -31,6 +31,7 @@ class TracingView @JvmOverloads constructor(
     private var thumbPos = FloatArray(2)    // موقع الكرة الحالي
     private var pathProgress = 0f
     init {
+        specialCases= arrayListOf("D","Y")
 
         tracePaint.apply {
             color = Color.LTGRAY
@@ -148,7 +149,7 @@ class TracingView @JvmOverloads constructor(
             if(counter<pathArray.size){
                 changePath(counter)
                 if(tracingName.isNotEmpty()){
-                    if(tracingName!="D")
+                    if(tracingName !in specialCases)
                     {
                         isDragging=true
                     }
