@@ -7,10 +7,9 @@
     <ImageView
         android:id="@+id/bitmap"
         android:layout_width="match_parent"
-        android:contentDescription="TODO"
         android:src="#00FFFFFF"
         android:layout_height="match_parent"
-         />
+        tools:ignore="ContentDescription" />
 
 
 </FrameLayout>
