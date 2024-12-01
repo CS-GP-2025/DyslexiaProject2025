@@ -153,6 +153,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/readingBtn"
             android:layout_width="wrap_content"
             app:cardCornerRadius="30dp"
             android:backgroundTint="#FBC8D3"
