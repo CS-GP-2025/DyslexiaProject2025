@@ -25,16 +25,14 @@ import com.example.dislexiaapp2025.R
 import com.example.dislexiaapp2025.databinding.ActivityReadCustomTextBinding
 import java.util.Locale
 
+@Suppress("NAME_SHADOWING")
 class ReadCustomTextActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReadCustomTextBinding
     lateinit var pulseAnimator:ObjectAnimator
     private lateinit var speechRecognizer: SpeechRecognizer
     private var actualText = ""
     private var speechText = ""
-<<<<<<< HEAD
-=======
     private var isRecording = false
->>>>>>> 5f85c4f (the third commit)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,42 +55,29 @@ class ReadCustomTextActivity : AppCompatActivity() {
         }
         //create speech recognizer
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
-<<<<<<< HEAD
-=======
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
             putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak something")
         }
->>>>>>> 5f85c4f (the third commit)
 
         //set listener for speech recognizer
         speechRecognizer.setRecognitionListener(object : RecognitionListener {
             override fun onReadyForSpeech(params: Bundle?) {
-<<<<<<< HEAD
                 Toast.makeText(this@ReadCustomTextActivity, "Listening...", Toast.LENGTH_SHORT).show()
             }
 
             override fun onBeginningOfSpeech() {
-=======
->>>>>>> 5f85c4f (the third commit)
                 //animate the record button
                 binding.recordBtn.animate().scaleY(1.2f).scaleX(1.2f).setDuration(100).withEndAction {
                     binding.recordBtn.setBackgroundResource(R.drawable.is_recording_bg)
                 }.start()
-<<<<<<< HEAD
-=======
                 Toast.makeText(this@ReadCustomTextActivity, "Listening...", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onBeginningOfSpeech() {
->>>>>>> 5f85c4f (the third commit)
             }
 
             override fun onRmsChanged(rmsdB: Float) {}
             override fun onBufferReceived(buffer: ByteArray?) {}
             override fun onEndOfSpeech() {
-<<<<<<< HEAD
                 //when speech ends, stop listening
                 Toast.makeText(this@ReadCustomTextActivity, "Stopped Listening", Toast.LENGTH_SHORT)
                     .show()
@@ -101,23 +86,18 @@ class ReadCustomTextActivity : AppCompatActivity() {
                     binding.recordBtn.setBackgroundResource(R.drawable.is_not_recording)}.start()
                 //stop pulse animation
                 pulseAnimator.cancel()
-=======
                 if (isRecording) {
                     speechRecognizer.startListening(intent) // إعادة التشغيل
                 }
->>>>>>> 5f85c4f (the third commit)
             }
 
             @SuppressLint("SetTextI18n")
             override fun onError(error: Int) {
-<<<<<<< HEAD
                 //when error occurs, show error message
                 Toast.makeText(this@ReadCustomTextActivity, "Try again", Toast.LENGTH_SHORT).show()
-=======
                 if (isRecording && error != SpeechRecognizer.ERROR_CLIENT && error != SpeechRecognizer.ERROR_RECOGNIZER_BUSY) {
                     speechRecognizer.startListening(intent) // Restart listening on error
                 }
->>>>>>> 5f85c4f (the third commit)
             }
 
             override fun onResults(results: Bundle?) {
@@ -125,19 +105,13 @@ class ReadCustomTextActivity : AppCompatActivity() {
                 val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                 if (matches != null) {
                     speechText=matches[0]
-<<<<<<< HEAD
                     goToResult()
                 }
             }
 
 
-            override fun onPartialResults(partialResults: Bundle?) {}
-=======
-                }
-                if(isRecording) {
-                    speechRecognizer.startListening(intent)
-                }
-            }
+
+
             override fun onPartialResults(partialResults: Bundle?) {
                 val partialMatch = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0)
                 if (!partialMatch.isNullOrEmpty()) {
@@ -145,7 +119,6 @@ class ReadCustomTextActivity : AppCompatActivity() {
                 }
             }
 
->>>>>>> 5f85c4f (the third commit)
             override fun onEvent(eventType: Int, params: Bundle?) {}
         }
         )
@@ -173,7 +146,6 @@ class ReadCustomTextActivity : AppCompatActivity() {
 
         binding.recordBtn.setOnClickListener {
             //when record button is clicked, start listening
-<<<<<<< HEAD
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
@@ -183,7 +155,6 @@ class ReadCustomTextActivity : AppCompatActivity() {
             setupPulseAnimation()
             //animate the record signals
             pulseAnimator.start()
-=======
             isRecording=!isRecording
             if(isRecording) {
                 speechRecognizer.startListening(intent)
@@ -206,7 +177,6 @@ class ReadCustomTextActivity : AppCompatActivity() {
                 goToResult()
             }
 
->>>>>>> 5f85c4f (the third commit)
         }
         binding.backArrowIV.setOnClickListener{
             //when back arrow is clicked, go back to previous activity

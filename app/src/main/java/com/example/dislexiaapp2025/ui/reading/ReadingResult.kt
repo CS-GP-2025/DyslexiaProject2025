@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-<<<<<<< HEAD
-=======
 import android.widget.Toast
->>>>>>> 5f85c4f (the third commit)
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dislexiaapp2025.databinding.ActivityReadingResultBinding
@@ -23,10 +20,9 @@ class ReadingResult : AppCompatActivity() {
         //get the result of the reading
         val actualText = intent.getStringExtra("actualText")!!
         val speechText = intent.getStringExtra("speechText")!!
-<<<<<<< HEAD
-=======
+
         Toast.makeText(this, speechText, Toast.LENGTH_LONG).show()
->>>>>>> 5f85c4f (the third commit)
+
 
         //highlight the correct words and show the result
         //trim the text to remove the spaces at the end
