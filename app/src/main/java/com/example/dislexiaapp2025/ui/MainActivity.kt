@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dislexiaapp2025.databinding.ActivityMainBinding
 import com.example.dislexiaapp2025.repo.local.SharedPref
+import com.example.dislexiaapp2025.ui.math.MainMathActivity
 import com.example.dislexiaapp2025.ui.reading.ReadingMainActivity
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.readingBtn.setOnClickListener {
             val intent = Intent(this, ReadingMainActivity::class.java)
+            startActivity(intent)
+        }
+        binding.mathBtn.setOnClickListener {
+            val intent = Intent(this, MainMathActivity::class.java)
             startActivity(intent)
         }
         setContentView(binding.root)

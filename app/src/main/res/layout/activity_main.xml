@@ -191,6 +191,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/mathBtn"
                 android:layout_width="150dp"
                 android:orientation="vertical"
                 android:layout_height="200dp">

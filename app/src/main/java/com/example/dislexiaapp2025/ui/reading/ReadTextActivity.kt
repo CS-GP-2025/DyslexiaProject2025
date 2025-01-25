@@ -20,13 +20,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.dislexiaapp2025.R
 import com.example.dislexiaapp2025.databinding.ActivityReadTextBinding
+import com.example.dislexiaapp2025.util.adapter.TextsAdapter
+import com.example.dislexiaapp2025.util.listener.TextListener
 import java.util.Locale
 
 
-class ReadTextActivity : AppCompatActivity() {
+class ReadTextActivity : AppCompatActivity(),TextListener {
     private lateinit var binding: ActivityReadTextBinding
     private lateinit var pulseAnimator: ObjectAnimator
     private lateinit var speechRecognizer: SpeechRecognizer
+    private lateinit var adapter :TextsAdapter
     private var actualText = ""
     private var speechText = ""
     private var isRecording = false
@@ -36,6 +39,63 @@ class ReadTextActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityReadTextBinding.inflate(layoutInflater)
         enableEdgeToEdge()
+
+        //prepare texts
+        val listToChoose = arrayListOf(
+            "Hello how are you",
+            "I am fine thank you",
+            "My name is John",
+            "I am 25 years old"
+           , "I live in New York"
+           , "It is sunny and warm today"
+           , "I love to read books"
+           , "I like to play sports"
+           , "My favorite color is blue"
+           , "I work 40 hours a week"
+           , "The capital of France is Paris"
+           , "The largest planet in our solar system is Jupiter"
+           , "The currency of Japan is the yen"
+           , "The largest country in the world is Russia"
+           , "The smallest country in the world is Vatican City"
+           , "The capital of Australia is Canberra"
+           , "The largest ocean in the world is the Pacific Ocean"
+           , "The smallest ocean in the world is the Arctic Ocean"
+           , "The largest continent in the world is Asia"
+           , "The smallest continent in the world is Antarctica"
+           , "The capital of India is New Delhi"
+           , "The largest river in the world is the Nile River"
+           , "The smallest river in the world is the Amazon River"
+           , "The largest desert in the world is the Sahara Desert"
+           , "The smallest desert in the world is the Atacama Desert"
+           , "The capital of Switzerland is Bern"
+           , "The largest mountain in the world is Mount Everest"
+           , "The smallest mountain in the world is Mount Kilimanjaro"
+           , "The largest lake in the world is Lake Baikal"
+           , "The smallest lake in the world is Lake Baikal"
+           , "The capital of Canada is Ottawa"
+           , "The largest country in the world is Russia"
+           , "The smallest country in the world is Vatican City"
+           , "The capital of Australia is Canberra"
+           , "The largest ocean in the world is the Pacific Ocean"
+           , "The smallest ocean in the world is the Arctic Ocean"
+
+        )
+        adapter= TextsAdapter(listToChoose,this)
+        binding.recyclerView.adapter = adapter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         checkPermission()
 // Check if SpeechRecognizer is supported
         if (!SpeechRecognizer.isRecognitionAvailable(this)) {
@@ -71,8 +131,6 @@ class ReadTextActivity : AppCompatActivity() {
                         }.start()
                     }.start()
                 }.start()
-
-                Toast.makeText(this@ReadTextActivity, "Listening...", Toast.LENGTH_SHORT).show()
             }
 
             override fun onRmsChanged(rmsdB: Float) {}
@@ -90,7 +148,6 @@ class ReadTextActivity : AppCompatActivity() {
 
             @SuppressLint("SetTextI18n")
             override fun onError(error: Int) {
-                Toast.makeText(this@ReadTextActivity, "Try again", Toast.LENGTH_SHORT).show()
             }
 
 
@@ -118,11 +175,13 @@ class ReadTextActivity : AppCompatActivity() {
 
 
         // Set click listener for the record button
+
             val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
                 putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
                 putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak something")
             }
+        binding.recordBtn.setOnClickListener {
             speechRecognizer.startListening(intent)
             setupPulseAnimation()
             pulseAnimator.start()
@@ -148,6 +207,7 @@ class ReadTextActivity : AppCompatActivity() {
                 //go to result activity
                 goToResult()
 
+        }
         }
 
 
@@ -190,5 +250,11 @@ class ReadTextActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         speechRecognizer.destroy()
+    }
+
+    override fun onClick(text: String) {
+        binding.theMainView.visibility = VISIBLE
+        binding.actualText.text=text
+        binding.dummyView.visibility = GONE
     }
 }
