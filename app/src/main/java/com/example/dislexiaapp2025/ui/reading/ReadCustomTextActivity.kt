@@ -25,11 +25,10 @@ import com.example.dislexiaapp2025.R
 import com.example.dislexiaapp2025.databinding.ActivityReadCustomTextBinding
 import java.util.Locale
 
-@Suppress("NAME_SHADOWING")
 class ReadCustomTextActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReadCustomTextBinding
-    lateinit var pulseAnimator:ObjectAnimator
     private lateinit var speechRecognizer: SpeechRecognizer
+    private lateinit var pulseAnimator: ObjectAnimator
     private var actualText = ""
     private var speechText = ""
     private var isRecording = false
@@ -37,161 +36,125 @@ class ReadCustomTextActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReadCustomTextBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
-
-        //style the go button when text field is not empty
-        binding.inputField.doOnTextChanged{ text, _, _, _ ->
-            if(text != "") {
-             binding.goBtn.setBackgroundResource(R.drawable.is_recording_bg)
-            }
-        }
-
-        //check permission
-        checkPermission()
-        //check if speech recognition is available
-        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
-            Toast.makeText(this, "Speech recognition not supported", Toast.LENGTH_LONG).show()
-            return
-        }
-        //create speech recognizer
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
-        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-            putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak something")
-        }
-
-        //set listener for speech recognizer
-        speechRecognizer.setRecognitionListener(object : RecognitionListener {
-            override fun onReadyForSpeech(params: Bundle?) {
-                Toast.makeText(this@ReadCustomTextActivity, "Listening...", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onBeginningOfSpeech() {
-                //animate the record button
-                binding.recordBtn.animate().scaleY(1.2f).scaleX(1.2f).setDuration(100).withEndAction {
-                    binding.recordBtn.setBackgroundResource(R.drawable.is_recording_bg)
-                }.start()
-                Toast.makeText(this@ReadCustomTextActivity, "Listening...", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onRmsChanged(rmsdB: Float) {}
-            override fun onBufferReceived(buffer: ByteArray?) {}
-            override fun onEndOfSpeech() {
-                //when speech ends, stop listening
-                Toast.makeText(this@ReadCustomTextActivity, "Stopped Listening", Toast.LENGTH_SHORT)
-                    .show()
-                //animate the record button
-                binding.recordBtn.animate().scaleY(1f).scaleX(1f).setDuration(100).withEndAction {
-                    binding.recordBtn.setBackgroundResource(R.drawable.is_not_recording)}.start()
-                //stop pulse animation
-                pulseAnimator.cancel()
-                if (isRecording) {
-                    speechRecognizer.startListening(intent) // إعادة التشغيل
-                }
-            }
-
-            @SuppressLint("SetTextI18n")
-            override fun onError(error: Int) {
-                //when error occurs, show error message
-                Toast.makeText(this@ReadCustomTextActivity, "Try again", Toast.LENGTH_SHORT).show()
-                if (isRecording && error != SpeechRecognizer.ERROR_CLIENT && error != SpeechRecognizer.ERROR_RECOGNIZER_BUSY) {
-                    speechRecognizer.startListening(intent) // Restart listening on error
-                }
-            }
-
-            override fun onResults(results: Bundle?) {
-                //when results are returned, get the text and go to result activity
-                val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                if (matches != null) {
-                    speechText=matches[0]
-                    goToResult()
-                }
-            }
-
-
-
-
-            override fun onPartialResults(partialResults: Bundle?) {
-                val partialMatch = partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.get(0)
-                if (!partialMatch.isNullOrEmpty()) {
-                    Toast.makeText(this@ReadCustomTextActivity, partialMatch, Toast.LENGTH_SHORT).show()  // Show partial results
-                }
-            }
-
-            override fun onEvent(eventType: Int, params: Bundle?) {}
-        }
-        )
-
-
-
-
-        binding.goBtn.setOnClickListener {
-            //when go button is clicked, check if text field is not empty
-            if(binding.inputField.text.toString() != "") {
-            binding.readingText.text = binding.inputField.text
-            binding.inputField.setText("")
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            // Hide the keyboard
-            imm.hideSoftInputFromWindow(binding.inputField.windowToken, 0)
-                //hide the go button and input field
-            binding.goBtn.visibility= GONE
-            binding.inputField.visibility = GONE
-                //show the record button and record signals
-            binding.recordBtn.visibility =VISIBLE
-            binding.hintCard.visibility = VISIBLE
-            binding.recordSignals.visibility = VISIBLE}
-
-        }
-
-        binding.recordBtn.setOnClickListener {
-            //when record button is clicked, start listening
-            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-                putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-                putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-                putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak something")
-            }
-            speechRecognizer.startListening(intent)
-            setupPulseAnimation()
-            //animate the record signals
-            pulseAnimator.start()
-            isRecording=!isRecording
-            if(isRecording) {
-                speechRecognizer.startListening(intent)
-                setupPulseAnimation()
-                //animate the record signals
-                pulseAnimator.start()
-            }
-            else {
-                //stop listening
-                speechRecognizer.stopListening()
-                //when speech ends, stop listening
-                Toast.makeText(this@ReadCustomTextActivity, "Stopped Listening", Toast.LENGTH_SHORT)
-                    .show()
-                //animate the record button
-                binding.recordBtn.animate().scaleY(1f).scaleX(1f).setDuration(100).withEndAction {
-                    binding.recordBtn.setBackgroundResource(R.drawable.is_not_recording)}.start()
-                //stop pulse animation
-                pulseAnimator.cancel()
-                //go to result activity
-                goToResult()
-            }
-
-        }
-        binding.backArrowIV.setOnClickListener{
-            //when back arrow is clicked, go back to previous activity
-            finish()
-        }
         setContentView(binding.root)
-}
+
+        checkPermission()
+        setupSpeechRecognizer()
+        setupUI()
+    }
+
+    private fun setupUI() {
+        binding.inputField.doOnTextChanged { text, _, _, _ ->
+            binding.goBtn.setBackgroundResource(if (text.isNullOrEmpty()) R.drawable.is_not_recording else R.drawable.is_recording_bg)
+        }
+
+        binding.goBtn.setOnClickListener { handleGoButtonClick() }
+        binding.recordBtn.setOnClickListener { toggleRecording() }
+        binding.backArrowIV.setOnClickListener { finish() }
+    }
+
     private fun checkPermission() {
-        //to check if permission is granted
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECORD_AUDIO), 1)
         }
     }
+
+    private fun setupSpeechRecognizer() {
+        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
+            Toast.makeText(this, "Speech recognition not supported", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
+        speechRecognizer.setRecognitionListener(object : RecognitionListener {
+            override fun onReadyForSpeech(params: Bundle?) {
+                showToast("Listening...")
+            }
+
+            override fun onBeginningOfSpeech() {
+                animateRecording(true)
+                showToast("Listening...")
+            }
+
+            override fun onEndOfSpeech() {
+                animateRecording(false)
+                isRecording = false
+                //goToResult()
+                //if (isRecording) speechRecognizer.startListening(getSpeechIntent())
+            }
+
+            override fun onError(error: Int) {
+                showToast("Try again")
+                if (isRecording && error != SpeechRecognizer.ERROR_CLIENT && error != SpeechRecognizer.ERROR_RECOGNIZER_BUSY) {
+                    speechRecognizer.startListening(getSpeechIntent())
+                }
+            }
+
+            override fun onResults(results: Bundle?) {
+                results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.firstOrNull()?.let {
+                    speechText = it
+                    goToResult()
+                }
+            }
+
+            override fun onPartialResults(partialResults: Bundle?) {
+                partialResults?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.firstOrNull()?.let {
+                    showToast(it)
+                }
+            }
+
+            override fun onEvent(eventType: Int, params: Bundle?) {}
+            override fun onRmsChanged(rmsdB: Float) {}
+            override fun onBufferReceived(buffer: ByteArray?) {}
+        })
+    }
+
+    private fun getSpeechIntent(): Intent {
+        return Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak something")
+        }
+    }
+
+    private fun handleGoButtonClick() {
+        if (binding.inputField.text.isNullOrEmpty()) return
+
+        binding.readingText.text = binding.inputField.text
+        binding.inputField.setText("")
+        hideKeyboard()
+        toggleInputVisibility(false)
+    }
+
+    private fun toggleRecording() {
+        isRecording = !isRecording
+        if (isRecording) {
+            speechRecognizer.startListening(getSpeechIntent())
+            setupPulseAnimation()
+            pulseAnimator.start()
+        } else {
+            speechRecognizer.stopListening()
+            animateRecording(false)
+            goToResult()
+        }
+    }
+
+    private fun goToResult() {
+        val intent = Intent(this, ReadingResult::class.java).apply {
+            putExtra("actualText", binding.readingText.text.toString())
+            putExtra("speechText", speechText)
+        }
+        startActivity(intent)
+    }
+
+    private fun animateRecording(isRecording: Boolean) {
+        binding.recordBtn.animate().scaleX(if (isRecording) 1.2f else 1f).scaleY(if (isRecording) 1.2f else 1f).setDuration(100).withEndAction {
+            binding.recordBtn.setBackgroundResource(if (isRecording) R.drawable.is_recording_bg else R.drawable.is_not_recording)
+        }.start()
+        pulseAnimator.cancel()
+    }
+
     private fun setupPulseAnimation() {
-        //to set up pulse animation
         pulseAnimator = ObjectAnimator.ofPropertyValuesHolder(
             binding.recordSignals,
             PropertyValuesHolder.ofFloat(View.SCALE_X, 1f, 1.2f),
@@ -202,17 +165,25 @@ class ReadCustomTextActivity : AppCompatActivity() {
             repeatCount = ObjectAnimator.INFINITE
         }
     }
-    fun goToResult(){
-        // go to result activity
-        //with the actual text and speech text
-        val intent = Intent(this, ReadingResult::class.java)
-        actualText = binding.readingText.text.toString()
-        intent.putExtra("actualText",actualText)
-        intent.putExtra("speechText",speechText)
-        startActivity(intent)
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.inputField.windowToken, 0)
     }
+
+    private fun toggleInputVisibility(showInput: Boolean) {
+        binding.goBtn.visibility = if (showInput) VISIBLE else GONE
+        binding.inputField.visibility = if (showInput) VISIBLE else GONE
+        binding.recordBtn.visibility = if (showInput) GONE else VISIBLE
+        binding.hintCard.visibility = if (showInput) GONE else VISIBLE
+        binding.recordSignals.visibility = if (showInput) GONE else VISIBLE
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
     override fun onDestroy() {
-        //when activity is destroyed, destroy the speech recognizer to save your resources
         super.onDestroy()
         speechRecognizer.destroy()
     }
