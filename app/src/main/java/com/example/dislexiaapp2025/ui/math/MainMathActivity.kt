@@ -2,7 +2,7 @@ package com.example.dislexiaapp2025.ui.math
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.os.Handler
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.activity.enableEdgeToEdge
@@ -11,22 +11,24 @@ import com.example.dislexiaapp2025.databinding.ActivityMainMathBinding
 
 class MainMathActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainMathBinding
+    private lateinit var Handler: Handler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainMathBinding.inflate(layoutInflater)
+        Handler = Handler()
         enableEdgeToEdge()
         var nameOFOperation=""
-        var beginnerOrProf=""
+        var beginnerOrProf: String
 
         binding.proIV.setOnClickListener{
             beginnerOrProf="pro"
-            hideTheView()
             goTOActivity(nameOFOperation,beginnerOrProf)
+            hideTheView()
         }
         binding.beginnerIV.setOnClickListener{
             beginnerOrProf="beginner"
-            hideTheView()
             goTOActivity(nameOFOperation,beginnerOrProf)
+            hideTheView()
         }
 
 
@@ -68,9 +70,16 @@ class MainMathActivity : AppCompatActivity() {
      }
 
     private fun hideTheView(){
-        binding.beginnerOrProf.visibility = View.GONE
-        binding.btns.visibility = VISIBLE
+        Handler.postDelayed({
+            binding.beginnerOrProf.animate().scaleX(0f).scaleY(0f).setDuration(300).withEndAction{
+                binding.btns.visibility= VISIBLE
+                binding.beginnerOrProf.visibility= GONE
+            }.start()
+        },200)
+
     }
+
+
     private fun goToAddingActivity(name:String, level:String){
         val intent = Intent(this, AddingActivity::class.java)
         intent.putExtra("operationName",name)

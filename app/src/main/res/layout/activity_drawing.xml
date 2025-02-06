@@ -24,6 +24,7 @@ tools:context=".ui.drawing.DrawingActivity">
         android:id="@+id/profileIV"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:scaleType="centerCrop"
         android:layout_gravity="center"
         android:src="@color/black"
         app:layout_constraintTop_toTopOf="parent"
@@ -37,6 +38,7 @@ tools:context=".ui.drawing.DrawingActivity">
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="User Name"
+        android:fontFamily="@font/font"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,6 +51,7 @@ tools:context=".ui.drawing.DrawingActivity">
         android:layout_height="40dp"
         android:layout_gravity="end"
         android:src="@drawable/back_arrow"
+        android:rotationY="180"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -91,8 +94,9 @@ tools:context=".ui.drawing.DrawingActivity">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Draw"
+            android:fontFamily="@font/font"
             android:textSize="20sp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:id="@+id/type"
@@ -101,8 +105,9 @@ tools:context=".ui.drawing.DrawingActivity">
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:text="letter"
+            android:fontFamily="@font/font"
             android:textSize="20sp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:id="@+id/letterName"
@@ -114,7 +119,8 @@ tools:context=".ui.drawing.DrawingActivity">
             android:paddingStart="5dp"
             android:text="A"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/font"
+            />
     </LinearLayout>
 
     <FrameLayout
@@ -136,7 +142,7 @@ tools:context=".ui.drawing.DrawingActivity">
     android:background="#02000000"
     android:text="Done"
     android:textSize="20sp"
-    android:textStyle="bold"
+    android:fontFamily="@font/font"
     app:layout_constraintBottom_toBottomOf="@+id/imageView2"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.38"

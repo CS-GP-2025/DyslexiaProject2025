@@ -2,6 +2,7 @@ package com.example.dislexiaapp2025.ui
 
 import android.content.Intent
 import android.graphics.Rect
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -36,6 +37,8 @@ class LettersNumbersActivity : AppCompatActivity() , LettersListener {
         }
         binding = ActivityLettersNumbersBinding.inflate(layoutInflater)
         pref = SharedPref(this)
+
+
         binding.title.text=title
         val recyclerView=binding.recycler
         val gridLayoutManager = GridLayoutManager(this, 2) // Number of columns
@@ -83,5 +86,18 @@ class LettersNumbersActivity : AppCompatActivity() , LettersListener {
             startActivity(intent1)
         else
             startActivity(intent)
+    }
+    private fun loadProfileImage() {
+        val savedUri = pref.getImage()
+        if (savedUri != null) {
+            val uri = Uri.parse(savedUri)
+            binding.profileIV.setImageURI(uri)
+        }}
+
+    override fun onResume() {
+        super.onResume()
+        loadProfileImage()
+        val userName=pref.getProfileDetails().getName()
+        binding.userNameTV.text=userName
     }
 }

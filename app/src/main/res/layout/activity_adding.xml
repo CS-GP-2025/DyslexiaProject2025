@@ -32,11 +32,12 @@
             android:id="@+id/firstNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/font"
             android:layout_gravity="center"
             android:text="100"
             android:textColor="@color/black"
-            android:textSize="50sp"
-            android:textStyle="bold" />
+            android:textSize="45sp"
+             />
 
         <ImageView
             android:id="@+id/sign"
@@ -51,11 +52,11 @@
             android:id="@+id/secondNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="99"
+            android:fontFamily="@font/font"
+            android:layout_gravity="center"
             android:textColor="@color/black"
-            android:textSize="50sp"
-            android:textStyle="bold" />
+            android:textSize="45sp" />
 
         <View
             android:layout_width="match_parent"
@@ -88,6 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="done"
+        android:fontFamily="@font/font"
         android:textSize="30sp"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"

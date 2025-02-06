@@ -44,7 +44,7 @@ class DrawingFragment : Fragment() {
     ): View {
         binding = FragmentDrawingBinding.inflate(inflater, container, false)
         imageView=binding.bitmap
-        binding.root.setOnTouchListener { v, event ->
+        binding.root.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     floatStartX = event.x

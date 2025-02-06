@@ -5,11 +5,7 @@ import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.dislexiaapp2025.R
 import com.example.dislexiaapp2025.databinding.ActivityComparisionBinding
-import com.example.dislexiaapp2025.databinding.ChosenTextCardBinding
 import com.example.dislexiaapp2025.repo.local.MathQuestions
 
 class ComparisonActivity : AppCompatActivity() {
@@ -73,8 +69,6 @@ class ComparisonActivity : AppCompatActivity() {
         binding.firstNumber.text = comparison.first.toString()
         binding.secondNumber.text = comparison.second.toString()
         binding.sign.text = ""
-       // binding.sign.text = comparison.third
-
     }
     private fun checkResult(){
         binding.done.setOnClickListener{

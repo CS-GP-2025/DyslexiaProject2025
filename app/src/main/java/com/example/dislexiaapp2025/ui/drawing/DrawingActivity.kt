@@ -1,23 +1,24 @@
 package com.example.dislexiaapp2025.ui.drawing
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import com.example.dislexiaapp2025.R
 import com.example.dislexiaapp2025.databinding.ActivityDrawingBinding
 import com.example.dislexiaapp2025.repo.local.LettersAndNumbers
+import com.example.dislexiaapp2025.repo.local.SharedPref
 
 class DrawingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDrawingBinding
     private lateinit var fragment: DrawingFragment
-    var index=0
-    var type=""
+    private lateinit var sharedPreferences:SharedPref
+    private var index=0
+    private var type=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        sharedPreferences=SharedPref(this)
         binding = ActivityDrawingBinding.inflate(layoutInflater)
         //get the data from the previos
         index=intent.extras?.getInt("letterIndex",0)!!
@@ -41,12 +42,24 @@ class DrawingActivity : AppCompatActivity() {
             .commit()
     }
     private fun setNameOfLetter(type:String,index:Int):String{
-        var name=""
-        if(type=="letter"){
-            name= LettersAndNumbers.letters[index].name
+        val name =if(type=="letter"){
+             LettersAndNumbers.letters[index].name
         }else{
-            name= LettersAndNumbers.numbers[index].name
+             LettersAndNumbers.numbers[index].name
         }
         return name
+    }
+    private fun loadProfileImage() {
+        val savedUri = sharedPreferences.getImage()
+        if (savedUri != null) {
+            val uri = Uri.parse(savedUri)
+            binding.profileIV.setImageURI(uri)
+        }}
+
+    override fun onResume() {
+        super.onResume()
+        loadProfileImage()
+        val user=sharedPreferences.getProfileDetails()
+        binding.userNameTV.text=user.getName()
     }
 }

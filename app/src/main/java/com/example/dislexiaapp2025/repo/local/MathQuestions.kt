@@ -1,8 +1,5 @@
 package com.example.dislexiaapp2025.repo.local
 
-import android.content.Context
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.dislexiaapp2025.model.Adding
 
 object MathQuestions {

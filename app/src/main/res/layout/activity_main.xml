@@ -26,6 +26,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:scaleType="centerCrop"
             android:src="@color/black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +34,7 @@
             app:shapeAppearanceOverlay="@style/circularImage" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/helloLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -47,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hello"
+                android:fontFamily="@font/font"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -59,12 +61,12 @@
                 android:layout_marginStart="5dp"
                 android:text="User Name"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/font"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView"
+            android:id="@+id/settingIV"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
@@ -111,7 +113,7 @@
                     android:text="Letters"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/font"
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     tools:ignore="HardcodedText" />
@@ -144,7 +146,7 @@
                     android:text="Numbers"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/font"
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     tools:ignore="HardcodedText" />
@@ -176,7 +178,7 @@
                     android:text="Reading"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/font"
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     tools:ignore="HardcodedText" />
@@ -208,7 +210,7 @@
                     android:text="Math"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/font"
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     tools:ignore="HardcodedText" />

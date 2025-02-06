@@ -5,8 +5,6 @@ import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dislexiaapp2025.R
 import com.example.dislexiaapp2025.databinding.ActivityAddingBinding
@@ -16,9 +14,8 @@ import com.example.dislexiaapp2025.util.adapter.ResultAdapter
 
 class AddingActivity : AppCompatActivity() {
     lateinit var binding: ActivityAddingBinding
-    lateinit var question: Adding
-    //lateinit var adapter: ResultAdapter
-    lateinit var resultArray: ArrayList<Int>
+    private lateinit var question: Adding
+    private lateinit var resultArray: ArrayList<Int>
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityAddingBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)

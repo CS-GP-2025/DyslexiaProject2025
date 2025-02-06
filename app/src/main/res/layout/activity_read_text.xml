@@ -54,7 +54,7 @@
             android:text="Dyslexia is not an illness or a disability to be ashamed of it is a learning difference It impacts the way people process language particularly when it comes to reading writing and spelling"
             android:textColor="@color/black"
             android:textSize="22sp"
-            android:textStyle="normal"
+            android:fontFamily="@font/font"
             tools:ignore="VisualLintLongText" />
     </ScrollView>
 
@@ -92,6 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Click to record"
+                    android:fontFamily="@font/font"
                     android:textSize="20sp"
                     android:textColor="@color/white"
                    />
@@ -104,6 +105,7 @@
                 android:layout_marginBottom="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
                 android:text="and read, click again when you finished"
                 android:textSize="20sp"
                 android:textColor="@color/white"
@@ -154,7 +156,7 @@
             android:layout_margin="25dp"
             android:text="Choose Text To read"
             android:textSize="25dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/pubble"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

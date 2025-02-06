@@ -30,6 +30,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/biggerThan"
             android:text="b"
+            android:fontFamily="@font/font"
             android:textSize="30sp"
             android:layout_weight="1"
             android:background="@drawable/option_btn"
@@ -41,6 +42,7 @@
             android:text="="
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:fontFamily="@font/font"
             android:layout_weight="1"
             android:background="@drawable/option_btn"
             android:textSize="30sp"
@@ -49,6 +51,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/smallerThan"
             android:text="s"
+            android:fontFamily="@font/font"
             android:layout_weight="1"
             android:background="@drawable/option_btn"
             android:textSize="30sp"
@@ -68,7 +71,7 @@
         <TextView
             android:id="@+id/firstNumber"
             android:text="1555"
-            android:textStyle="bold"
+            android:fontFamily="@font/font"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:textSize="30sp"
@@ -82,6 +85,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
+            android:fontFamily="@font/font"
             android:background="@drawable/option_btn"
             android:text=""
             android:textSize="30sp"
@@ -89,7 +93,7 @@
         <TextView
             android:id="@+id/secondNumber"
             android:text="1555"
-            android:textStyle="bold"
+            android:fontFamily="@font/font"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:textSize="30sp"
@@ -114,6 +118,7 @@
         android:text="done"
         android:background="@drawable/option_btn"
         android:textSize="30sp"
+        android:fontFamily="@font/font"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

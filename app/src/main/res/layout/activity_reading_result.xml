@@ -39,25 +39,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="22dp"
+            android:fontFamily="@font/font"
             android:text="I
+
  have Dyslexia.
 
 When I was a kid, I wanted my dad to be proud of me. But I couldn't read well.
 
 My dad started reading Harry Potter to me. I loved it.
+"
 
-Without reading, I couldn't become who I wanted to be.
-
-So, I built Speechify to turn anything into an audiobook.
-
-Today, 30 million people use Speechify to read 3x faster, remember 2x more  reduce their stress.
-
-My mission is to be who I needed most when I was growing up.
-
-Much love ❤, Cliff"
             android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="normal"
+            android:textSize="25sp"
             tools:ignore="VisualLintLongText" />
     </ScrollView>
 
@@ -136,6 +129,7 @@ Much love ❤, Cliff"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:text="Result : "
+                android:fontFamily="@font/font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -143,7 +137,7 @@ Much love ❤, Cliff"
                 android:id="@+id/yourResult"
                 android:textSize="25sp"
                 android:textColor="@color/white"
-                android:textStyle="bold"
+                android:fontFamily="@font/font"
                 android:text="8"
                 android:layout_marginRight="5dp"
                 android:layout_width="wrap_content"
@@ -152,7 +146,7 @@ Much love ❤, Cliff"
             <TextView
                 android:textSize="25sp"
                 android:textColor="@color/white"
-                android:textStyle="bold"
+                android:fontFamily="@font/font"
                 android:text="/"
                 android:layout_marginRight="5dp"
                 android:layout_width="wrap_content"
@@ -161,7 +155,7 @@ Much love ❤, Cliff"
                 android:id="@+id/wordsNumber"
                 android:textSize="25sp"
                 android:textColor="@color/white"
-                android:textStyle="bold"
+                android:fontFamily="@font/font"
                 android:text="10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -171,9 +165,8 @@ Much love ❤, Cliff"
             android:id="@+id/tryAgainBtn"
             android:background="@drawable/custom_btn"
             android:textColor="@color/white"
-            android:textStyle="bold"
+            android:fontFamily="@font/font"
             android:textSize="18sp"
-            android:fontFamily="sans-serif-condensed-medium"
             android:backgroundTint="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

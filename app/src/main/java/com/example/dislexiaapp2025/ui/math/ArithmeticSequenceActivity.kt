@@ -8,12 +8,11 @@ import android.widget.Toast.LENGTH_SHORT
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.dislexiaapp2025.R
 import com.example.dislexiaapp2025.databinding.ActivityArithmeticSequenceBinding
 import com.example.dislexiaapp2025.repo.local.MathQuestions
 
+@Suppress("DEPRECATION")
 class ArithmeticSequenceActivity : AppCompatActivity() {
     lateinit var binding: ActivityArithmeticSequenceBinding
     private var firstResult = 0

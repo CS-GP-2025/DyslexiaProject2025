@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="8888"
             android:gravity="center"
-            android:textStyle="bold"
+            android:fontFamily="@font/font"
             android:textSize="25sp"
             android:textColor="@color/black"/>
         <TextView
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="8887"
             android:gravity="center"
-            android:textStyle="bold"
+            android:fontFamily="@font/font"
             android:textSize="25sp"
             android:textColor="@color/black"/>
         <TextView
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="8888"
             android:gravity="center"
-            android:textStyle="bold"
+            android:fontFamily="@font/font"
             android:textSize="25sp"
             android:textColor="@color/black"/>
         <androidx.cardview.widget.CardView
@@ -68,7 +68,7 @@
                 android:text=""
                 android:inputType="number"
                 android:maxLength="3"
-                android:textStyle="bold"
+                android:fontFamily="@font/font"
                 android:layout_marginStart="10dp"
                 android:textSize="25sp"
                 android:textColor="@color/black"/>
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:text="9"
             android:gravity="center"
-            android:textStyle="bold"
+            android:fontFamily="@font/font"
             android:textSize="25sp"
             android:textColor="@color/black"/>
         <androidx.cardview.widget.CardView
@@ -109,7 +109,7 @@
                 android:text=""
                 android:inputType="number"
                 android:maxLength="3"
-                android:textStyle="bold"
+                android:fontFamily="@font/font"
                 android:layout_marginStart="10dp"
                 android:textSize="25sp"
                 android:textColor="@color/black"/>
@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
             android:text="13"
             android:gravity="center"
-            android:textStyle="bold"
+            android:fontFamily="@font/font"
             android:textSize="25sp"
             android:textColor="@color/black"/>
 
@@ -142,6 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="done"
+        android:fontFamily="@font/font"
         android:textSize="30sp"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"

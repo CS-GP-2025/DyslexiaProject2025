@@ -1,4 +1,5 @@
 package com.example.dislexiaapp2025.ui.tracing
+import android.net.Uri
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dislexiaapp2025.databinding.ActivityTracingBinding
 import com.example.dislexiaapp2025.repo.local.LettersAndNumbers
+import com.example.dislexiaapp2025.repo.local.SharedPref
 
 class TracingActivity : AppCompatActivity() {
     private var index=0
@@ -16,10 +18,12 @@ class TracingActivity : AppCompatActivity() {
     private var ofCompletedPaths=0
     private lateinit var fragment:TracingFragment
     private lateinit var binding: ActivityTracingBinding
+    private lateinit var sharedPreferences:SharedPref
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityTracingBinding.inflate(layoutInflater)
+        sharedPreferences= SharedPref(this)
 
          index=intent.extras?.getInt("letterIndex",0)!!
          type=intent.extras?.getString("type",null)!!
@@ -87,5 +91,18 @@ class TracingActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(binding.frameDrawer.id,fragment)
             .commit()
+    }
+    private fun loadProfileImage() {
+        val savedUri = sharedPreferences.getImage()
+        if (savedUri != null) {
+            val uri = Uri.parse(savedUri)
+            binding.profileIV.setImageURI(uri)
+        }}
+
+    override fun onResume() {
+        super.onResume()
+        loadProfileImage()
+        val name=sharedPreferences.getProfileDetails().getName()
+        binding.userNameTV.text=name
     }
 }

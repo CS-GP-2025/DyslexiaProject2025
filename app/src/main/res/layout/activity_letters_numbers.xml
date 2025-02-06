@@ -23,6 +23,7 @@
             android:id="@+id/profileIV"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:scaleType="centerCrop"
             android:layout_gravity="center"
             android:src="@color/black"
             app:layout_constraintTop_toTopOf="parent"
@@ -48,6 +49,7 @@
             android:layout_height="40dp"
             android:layout_gravity="end"
             android:src="@drawable/back_arrow"
+            android:rotationY="180"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

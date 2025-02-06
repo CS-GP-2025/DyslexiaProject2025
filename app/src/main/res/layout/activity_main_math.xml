@@ -50,7 +50,7 @@
                     android:text="Adding"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/font"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
 
@@ -79,7 +79,7 @@
                     android:text="Substracting"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/font"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
 
@@ -108,7 +108,7 @@
                     android:text="Arithmetic sequence"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/font"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
 
@@ -137,7 +137,7 @@
                     android:text="Comparison"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/font"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
 
